@@ -52,6 +52,7 @@ contract blindAuction {
 
     function bid() external payable {
         require(startBid == true, "Auction ended");
+        require(msg.sender != nftOwner, "Auction owner cannot bid");
         require(alreadyBid[msg.sender] == false , "Already bid");
         require(msg.value >= startingPrice, "Increase your bid");
 
