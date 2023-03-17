@@ -91,7 +91,7 @@ contract blindAuction {
         require(endBid == true, "Auction still Ongoing");
         require(msg.sender != highestbidder,"Ole, you already won the NFT");
         require(withdraw[msg.sender] == false, "Already claimed refund");
-        require(bidderAmount[msg.sender] == _amount, "Insufficient refund");
+        require(bidderAmount[msg.sender] == _amount, "Not amount bidded");
 
         payable(msg.sender).transfer(_amount);
 
