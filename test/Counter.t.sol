@@ -10,29 +10,28 @@ contract blindAuctionTest is Test {
     Vince public vince;
 
 
-    address Bob = vm.addr(0x2);
-    address Alice = vm.addr(0x3);
-    address Idogwu = vm.addr(0x4);
-    address Faith = vm.addr(0x5);
-    address Femi = vm.addr(0x6);
-    address Nonso = vm.addr(0x7);
+    address Bob = vm.addr(0x1);
+    address Alice = vm.addr(0x2);
+    address Idogwu = vm.addr(0x3);
+    address Faith = vm.addr(0x4);
+    address Femi = vm.addr(0x5);
+    address Nonso = vm.addr(0x6);
 
     uint price = 1000;
     function setUp() public {
-        vm.startPrank(Bob);
         vince = new Vince();
-        vince.safeMint(Alice, 1);
+        vince.safeMint(Bob, 1);
         auction = new blindAuction();
 
+        vm.startPrank(Bob);
 
 
 
     }
 
     function teststartAuction( ) external{
-
         vince.approve(address(auction), 1);
-        auction.startAuction(1, Bob, 1);
+        auction.startAuction(1000, address(vince), 1);
 
 
 
