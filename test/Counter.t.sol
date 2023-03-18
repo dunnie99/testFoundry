@@ -32,6 +32,7 @@ contract blindAuctionTest is Test {
     function teststartAuction( ) external{
         vince.approve(address(auction), 1);
         auction.startAuction(1000, address(vince), 1);
+        
 
 
 

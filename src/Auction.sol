@@ -14,19 +14,19 @@ import "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
 contract blindAuction {
 
 
-    IERC721 public nft;
-    uint public nftId;
+    IERC721 internal nft;
+    uint internal nftId;
 
     address payable public nftOwner;
-    address highestbidder;
+    address internal highestbidder;
     uint public startingPrice;
     uint public duration;
-    uint highestbid;
+    uint internal highestbid;
     bool public startBid;
     bool public endBid;
-    bool refunded;
+    bool public refunded;
 
-    mapping(address => uint) bidderAmount;
+    mapping(address => uint) internal bidderAmount;
     mapping(address => bool) public alreadyBid;
     mapping(address => bool) public withdraw;
 
@@ -90,7 +90,7 @@ contract blindAuction {
 
     function claimRefund(uint _amount) public {
         require(endBid == true, "Auction still Ongoing");
-        require(msg.sender != highestbidder,"Ole, you already won the NFT");
+        require(msg.sender != highestbidder ,"Ole, you already won the NFT");
         require(withdraw[msg.sender] == false, "Already claimed refund");
         require(bidderAmount[msg.sender] == _amount, "Not amount bidded");
 
@@ -100,5 +100,8 @@ contract blindAuction {
 
 
     }
+    //fallback () external payable { }
+    receive () external payable { }
+
  
 }
