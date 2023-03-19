@@ -89,6 +89,8 @@ contract blindAuction {
     }
 
     function claimRefund(uint _amount) public {
+        uint refundTime = duration + 84600;
+        require( block.timestamp >= refundTime, "refund not ready");
         require(endBid == true, "Auction still Ongoing");
         require(msg.sender != highestbidder ,"Ole, you already won the NFT");
         require(withdraw[msg.sender] == false, "Already claimed refund");
@@ -100,7 +102,7 @@ contract blindAuction {
 
 
     }
-    //fallback () external payable { }
+    // fallback () external payable { }
     receive () external payable { }
 
  
