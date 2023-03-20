@@ -32,14 +32,20 @@ contract blindAuctionTest is Test {
     function teststartAuction( ) external{
         vince.approve(address(auction), 1);
         auction.startAuction(1000, address(vince), 1);
+
+        vm.stopPrank();
         
-
-
-
-
+        vm.startPrank(Alice);
 
     }
 
+    function testBid() external payable{
+
+        
+
+        auction.bid{value: 1000};
+
+    }
 
     
     // function startAuctionTest() external {
